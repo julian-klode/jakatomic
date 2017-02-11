@@ -38,7 +38,7 @@ static inline void jak_atom_list_push(struct jak_atom_list *list,
                                       struct jak_list *new_element)
 {
     do {
-        new_element->next = list->jak_list;
+        new_element->next = __atomic_load_n(&list->jak_list, __ATOMIC_SEQ_CST);
     } while (!__atomic_compare_exchange_n(&list->jak_list,
                                           &new_element->next,
                                           new_element,
