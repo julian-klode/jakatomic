@@ -42,7 +42,7 @@ static inline void jak_atom_list_push(struct jak_atom_list *list,
     } while (!__atomic_compare_exchange_n(&list->jak_list,
                                           &new_element->next,
                                           new_element,
-                                          false,
+                                          0,
                                           __ATOMIC_SEQ_CST, __ATOMIC_SEQ_CST));
 }
 
